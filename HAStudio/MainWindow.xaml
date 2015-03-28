@@ -1,0 +1,82 @@
+﻿<Window x:Class="HAStudio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:HAStudio"
+        mc:Ignorable="d"
+        Title="Panel">
+    
+<Window.CommandBindings>
+  <CommandBinding Command="ApplicationCommands.Open"
+                  Executed="OpenCmdExecuted"
+                  CanExecute="OpenCmdCanExecute"/>
+  <CommandBinding Command="ApplicationCommands.SaveAs"
+                  Executed="SaveAsCmdExecuted"
+                  CanExecute="SaveAsCanExecute"/>
+  <CommandBinding Command="ApplicationCommands.Save"
+                  Executed="SaveCmdExecuted"
+                  CanExecute="SaveCanExecute"/>
+</Window.CommandBindings>    
+    
+    
+    <DockPanel LastChildFill="True">
+<Menu IsMainMenu="True" DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open" Command="Open"/>
+                <MenuItem Header="_Save" Command="Save"/>
+                <MenuItem Header="_Save as" Command="SaveAs"/>
+            </MenuItem>
+            <MenuItem Header="_Edit" />
+    <MenuItem Header="_View" />
+    <MenuItem Header="_Window" />
+    <MenuItem Header="_Help" />
+</Menu>
+        <StackPanel DockPanel.Dock="left">
+            <Button x:Name="cmdAddButton" Content="Button" Height="27" Width="75" Click="cmdAddButton_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" DockPanel.Dock="Right">
+            <xctk:PropertyGrid x:Name="PropertyPanel" Width="450" Margin="10"/>
+        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid 
+                x:Name="grid"
+            
+                MouseDown="grid_MouseDown"
+                
+                Background="Transparent" MouseUp="grid_MouseUp" MouseMove="grid_MouseMove">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border x:Name="border" BorderBrush="Black" BorderThickness="2"/>
+            </Grid>
+            <StackPanel Grid.Column="1">
+                <Button x:Name="cmdAddColumn" Content="+&gt;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="22" Click="cmdAddColumn_Click"/>
+                <Button x:Name="cmdRemoveCollumn" Content="-&lt;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="22" Click="cmdRemoveCollumn_Click"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button x:Name="cmdAddRow" Content="+\/" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="26" Click="cmdAddRow_Click"/>
+                <Button x:Name="cmdRemoveRow" Content="-/\" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="26" Click="cmdRemoveRow_Click"/>
+            </StackPanel>
+        </Grid>
+        
+
+    </DockPanel>
+</Window>
